@@ -39,4 +39,11 @@ class briancainnet {
     home       => '/home/brian',
     require    => Package[$packages],
   }
+
+  service { "fail2ban" :
+    ensure    => running,
+    enable    => true,
+    require   => [ Package["fail2ban"], ],
+  }
+
 }

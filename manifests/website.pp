@@ -1,3 +1,6 @@
+# == Class: briancainnet::website
+# Class to setup briancain.net
+#
 class briancainnet::website {
   $packages = [
     'unzip',
@@ -17,16 +20,16 @@ class briancainnet::website {
   }
 
   vcsrepo { $website_repo_root:
-    source   => "https://www.github.com/briancain/website",
+    source   => 'https://www.github.com/briancain/website',
     revision => master,
   }
 
   file { [ '/var/www', $website_root ] :
     ensure  => directory,
-    owner   => "root",
-    group   => "root",
-    mode    => "0755",
-    require => [ Package["nginx"], ],
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => [ Package['nginx'], ],
   }
 
   nginx::resource::vhost { 'www.briancain.net':
@@ -37,9 +40,8 @@ class briancainnet::website {
   exec { "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}":
     command => "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}",
     path    => $website_repo_root,
-    user    => "root",
+    user    => 'root',
     cwd     => $website_repo_root,
     require => [ Vcsrepo[$website_repo_root], Package['unzip'], File[$website_root], ],
   }
-
 }

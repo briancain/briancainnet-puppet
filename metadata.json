@@ -4,7 +4,7 @@
   "author": "briancain",
   "summary": "A manifest for briancain.net",
   "license": "Apache 2.0",
-  "source": "",
+  "source": "https://github.com/briancain/briancainnet-puppet",
   "project_page": null,
   "issues_url": null,
   "dependencies": [

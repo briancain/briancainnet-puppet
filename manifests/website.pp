@@ -24,7 +24,7 @@ class briancainnet::website {
     revision => master,
   }
 
-  file { [ '/var/www', $website_root ] :
+  file { '/var/www' :
     ensure  => directory,
     owner   => 'root',
     group   => 'root',
@@ -37,11 +37,21 @@ class briancainnet::website {
   }
 
   # lol deployments
-  exec { "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}":
-    command => "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}",
-    path    => $website_repo_root,
+  exec { "extract website artifact":
+    command => "/usr/bin/unzip ${website_repo_root}/files/site.zip",
+    path    => "${website_repo_root}/files",
     user    => 'root',
-    cwd     => $website_repo_root,
-    require => [ Vcsrepo[$website_repo_root], Package['unzip'], File[$website_root], ],
+    cwd     => "${website_repo_root}/files",
+    require => [ Vcsrepo[$website_repo_root], Package['unzip'] ],
+  }
+
+  file { $website_root :
+    ensure  => directory,
+    recurse => true,
+    source  => "${website_repo_root}/files/_site",
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => Exec['extract website artifact'],
   }
 }

@@ -3,11 +3,10 @@ class briancainnet::website {
     'unzip',
   ]
 
-  $website_root = '/var/www/briancain'
+  package { $packages : ensure => present, }
 
-  package { $packages:
-    ensure => present,
-  }
+  $website_root = '/var/www/briancain'
+  $website_repo_root = '/home/brian/website'
 
   class { 'nginx': }
 
@@ -17,12 +16,12 @@ class briancainnet::website {
     ensure   => present,
   }
 
-  vcsrepo { '/home/brian/website':
-    source   => "git@github.com:briancain/website.git",
+  vcsrepo { $website_repo_root:
+    source   => "https://www.github.com/briancain/website",
     revision => master,
   }
 
-  file { "/var/www/briancain" :
+  file { [ '/var/www', $website_root ] :
     ensure  => directory,
     owner   => "root",
     group   => "root",
@@ -35,11 +34,12 @@ class briancainnet::website {
   }
 
   # lol deployments
-  exec { "unzip site.zip; mv _site/* ${website_root}":
-    command => "unzip site.zip; mv _site/* ${website_root}",
+  exec { "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}":
+    command => "/usr/bin/unzip ${website_repo_root}/files/site.zip; /bin/mv ${website_repo_root}/_site/* ${website_root}",
+    path    => $website_repo_root,
     user    => "root",
-    cwd     => "/home/brian/website",
-    require => [ Vcsrepo['/home/brian/website'], Package['unzip'], File['/var/www/briancain'], ],
+    cwd     => $website_repo_root,
+    require => [ Vcsrepo[$website_repo_root], Package['unzip'], File[$website_root], ],
   }
 
 }

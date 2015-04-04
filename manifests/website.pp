@@ -38,7 +38,7 @@ class briancainnet::website {
 
   # lol deployments
   exec { "extract website artifact":
-    command => "/usr/bin/unzip ${website_repo_root}/files/site.zip",
+    command => "/usr/bin/unzip -o ${website_repo_root}/files/site.zip",
     path    => "${website_repo_root}/files",
     user    => 'root',
     cwd     => "${website_repo_root}/files",

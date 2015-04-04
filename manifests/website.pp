@@ -26,8 +26,8 @@ class briancainnet::website {
 
   file { '/var/www' :
     ensure  => directory,
-    owner   => 'root',
-    group   => 'root',
+    owner   => 'www-data',
+    group   => 'www-data',
     mode    => '0755',
     require => [ Package['nginx'], ],
   }
@@ -49,8 +49,8 @@ class briancainnet::website {
     ensure  => directory,
     recurse => true,
     source  => "${website_repo_root}/files/_site",
-    owner   => 'root',
-    group   => 'root',
+    owner   => 'www-data',
+    group   => 'www-data',
     mode    => '0755',
     require => Exec['extract website artifact'],
   }

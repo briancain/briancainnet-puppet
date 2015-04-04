@@ -40,10 +40,10 @@ class briancainnet {
     require    => Package[$packages],
   }
 
-  service { "fail2ban" :
-    ensure    => running,
-    enable    => true,
-    require   => [ Package["fail2ban"], ],
+  service { 'fail2ban' :
+    ensure  => running,
+    enable  => true,
+    require => [ Package['fail2ban'], ],
   }
 
 }

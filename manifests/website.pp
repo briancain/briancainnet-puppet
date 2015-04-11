@@ -9,7 +9,7 @@ class briancainnet::website {
   package { $packages : ensure => present, }
 
   $website_root = '/var/www/briancain'
-  $website_repo_root = '/home/brian/website'
+  $website_repo_root = '/home/brian/projects/website'
 
   class { 'nginx': }
 

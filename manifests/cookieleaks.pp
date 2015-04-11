@@ -1,7 +1,7 @@
 # == Class: briancainnet::cookieleaks
 # Class to setup cookieleaks.org
 #
-class briancainnet::website {
+class briancainnet::cookieleaks {
   $cookieleaks_root = '/var/www/cookieleaks'
 
   class { 'nginx': }
@@ -18,7 +18,7 @@ class briancainnet::website {
     www_root => $cookieleaks_root,
   }
 
-  file { $cookleaks_root :
+  file { $cookieleaks_root :
     ensure => directory,
     owner  => 'www-data',
     group  => 'www-data',

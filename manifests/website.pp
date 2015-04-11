@@ -37,6 +37,10 @@ class briancainnet::website {
     www_root => $website_root,
   }
 
+  nginx::resource::vhost { 'briancain.net':
+    www_root => $website_root,
+  }
+
   # lol deployments
   exec { 'extract website artifact':
     command => "/usr/bin/unzip -o ${website_repo_root}/files/site.zip",

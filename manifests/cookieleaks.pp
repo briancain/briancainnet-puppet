@@ -18,6 +18,10 @@ class briancainnet::cookieleaks {
     www_root => $cookieleaks_root,
   }
 
+  nginx::resource::vhost { 'cookieleaks.org':
+    www_root => $cookieleaks_root,
+  }
+
   file { $cookieleaks_root :
     ensure => directory,
     owner  => 'www-data',

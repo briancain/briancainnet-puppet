@@ -33,11 +33,7 @@ class briancainnet::website {
     require => [ Package['nginx'], ],
   }
 
-  nginx::resource::vhost { 'www.briancain.net':
-    www_root => $website_root,
-  }
-
-  nginx::resource::vhost { 'briancain.net':
+  nginx::resource::vhost { ['www.briancain.net', 'briancain.net'] :
     www_root => $website_root,
   }
 

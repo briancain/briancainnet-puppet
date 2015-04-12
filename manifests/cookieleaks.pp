@@ -14,11 +14,7 @@ class briancainnet::cookieleaks {
     require => [ Package['nginx'], ],
   }
 
-  nginx::resource::vhost { 'www.cookieleaks.org':
-    www_root => $cookieleaks_root,
-  }
-
-  nginx::resource::vhost { 'cookieleaks.org':
+  nginx::resource::vhost { ['www.cookieleaks.org', 'cookieleaks.org'] :
     www_root => $cookieleaks_root,
   }
 

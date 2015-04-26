@@ -18,8 +18,8 @@ class briancainnet::cookieleaks {
   }
 
   vcsrepo { $cookieleaks_repo_root:
-    source   => 'https://www.github.com/briancain/cookieleaks.org',
     ensure   => latest,
+    source   => 'https://www.github.com/briancain/cookieleaks.org',
     revision => master,
   }
 

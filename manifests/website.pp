@@ -20,8 +20,8 @@ class briancainnet::website {
   }
 
   vcsrepo { $website_repo_root:
-    source   => 'https://www.github.com/briancain/website',
     ensure   => latest,
+    source   => 'https://www.github.com/briancain/website',
     revision => master,
   }
 

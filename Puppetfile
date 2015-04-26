@@ -8,5 +8,5 @@ mod 'briancainnet',
 mod 'jfryman/nginx'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
-mod 'puppetlabs/apt'
+mod 'puppetlabs/apt', '1.8.0'
 mod 'puppetlabs/vcsrepo'

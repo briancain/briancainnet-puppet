@@ -37,13 +37,6 @@ class briancainnet::cookieleaks {
     www_root => $cookieleaks_root,
   }
 
-  file { $cookieleaks_root :
-    ensure => directory,
-    owner  => 'www-data',
-    group  => 'www-data',
-    mode   => '0775',
-  }
-
   # lol deployments
   exec { 'extract cookieleaks artifact':
     command => "/usr/bin/unzip -o ${cookieleaks_repo_root}/files/site.zip",

@@ -1,6 +1,6 @@
 forge "http://forge.puppetlabs.com"
 
-moduledir '/etc/puppet/modules'
+moduledir '/etc/puppetlabs/code/modules'
 
 mod 'briancainnet',
   :git => 'https://www.github.com/briancain/briancainnet-puppet'
@@ -8,5 +8,5 @@ mod 'briancainnet',
 mod 'jfryman/nginx'
 mod 'puppetlabs/stdlib'
 mod 'puppetlabs/concat'
-mod 'puppetlabs/apt', '1.8.0'
+mod 'puppetlabs/apt'
 mod 'puppetlabs/vcsrepo'

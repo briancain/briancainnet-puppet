@@ -35,7 +35,7 @@ class briancainnet {
     ensure     => present,
     comment    => 'brian',
     managehome => true,
-    shell      => '/bin/zsh',
+    shell      => '/bin/bash',
     home       => '/home/brian',
     require    => Package[$packages],
   }

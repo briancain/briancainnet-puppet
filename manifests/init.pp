@@ -49,6 +49,15 @@ class briancainnet {
     require    => Package[$packages],
   }
 
+  user { 'hail9000':
+    ensure     => present,
+    comment    => 'hailee',
+    managehome => true,
+    shell      => '/bin/bash',
+    home       => '/home/hail9000',
+    require    => Package[$packages],
+  }
+
   service { 'fail2ban' :
     ensure  => running,
     enable  => true,
